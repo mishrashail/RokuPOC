@@ -1,0 +1,38 @@
+<?xml version = "1.0" encoding = "utf-8" ?>
+
+<!--********** Copyright 2016 Roku Corp.  All Rights Reserved. **********-->
+
+<component name = "contentRowDesign" extends = "Group">
+
+  <interface >
+    <!-- content of the item-->
+    <field id = "itemContent" type = "node" onChange = "onItemContentChanged" alwaysNotify="false"/>
+    <!-- Width of the item-->
+    <field id = "width" type = "float"/>
+    <!-- Height of the item-->
+    <field id = "height" type = "float"/>
+    <!--Check for grid-->
+    <field id = "isGrid" type = "boolean"/>
+  </interface>
+  <!--Script for some of the utility functions-->
+  <script type="text/brightscript" uri="pkg:/source/main.brs" />
+  <!-- Script for some of the functions-->
+  <script type="text/brightscript" uri="pkg:/source/utils.brs" />
+
+  <!--Main Handler-->
+  <script type="text/brightscript" uri="pkg:/components/rowListDesigns/contentRowDesign.brs" />
+
+  <children >
+    <!--posterNode for grid-->
+      <Poster id = "pageItemImage" loadDisplayMode="scaleToZoom" />
+       <LayoutGroup id="ContentDetailGroup" layoutDirection="vert" itemSpacings="[20]" translation = "[0, 420]" visible="false">
+          <Label id="Title" color="#ffffff" wrap="true" maxLines="2" lineSpacing="0.0" width="250">
+            <Font role="font" uri="pkg://fonts/SF-Pro-Display-Regular.otf" size="29" />
+          </Label>
+          <Label id="description" color="#ffffff7c" wrap="true" maxLines="3" lineSpacing="0.0" width="250" >
+            <Font role="font" uri="pkg://fonts/SF-Pro-Display-Regular.otf" size="20" />
+          </Label>
+
+       </LayoutGroup>
+  </children>
+</component>

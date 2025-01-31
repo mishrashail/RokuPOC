@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="characterScreen" extends="Group" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://devtools.web.roku.com/schema/RokuSceneGraph.xsd">
+	<!-- Script element allows the definition of functions to initialize the component, and to respond to events (including key events) 
+    and field value changes. The BrightScript interfaces for the Scene Graph nodes used by BrightScript are the same interfaces
+    defined for roSGNode objects. -->
+	<script type="text/brightscript" uri="pkg:/components/screens/characterScreen/characterScreen.brs" />
+	<script type="text/brightscript" uri="pkg:/source/main.brs" />
+	<script type="text/brightscript" uri="pkg:/components/uriController.brs" />		
+	<script type="text/brightscript" uri="pkg:/source/utils.brs" />
+
+	<interface>
+		<field id="setFocus" type="bool" alwaysNotify="true" onChange="setFocus"/>
+		<field id="contentData" type="node" alwaysNotify="true" onChange="loadcharacterScreencontentData"/>
+		<field id="gotovideoScreen" type="node" alwaysNotify="true" />
+	</interface>	
+		
+	<children>	
+		<!-- Children element contains all the Scene Graph node elements in a Scene Graph XML component. -->
+        <MarkupGrid 
+			id="contentRow" 
+			translation = "[80,80]"
+			visible="false"
+			vertFocusAnimationStyle="fixedFocus"     
+			itemComponentName="contentRowDesign"/>
+
+        <loadingIndicator
+            id="loadingIndicator"
+            visible="false"/> 
+
+    </children>
+    
+</component>

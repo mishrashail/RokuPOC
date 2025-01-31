@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="LoadingIndicator" extends="Group">
+  <children>
+    <!--Create loader with rotating animation-->
+    <Poster id="LoadingImage">
+      <Animation id="RotationAnimation" repeat="true" easeFunction="linear">
+        <FloatFieldInterpolator key="[1, 0]" keyValue="[0, 6.283]" fieldToInterp="LoadingImage.rotation"/>
+      </Animation>
+    </Poster>
+    <!--Create Fade animation-->
+    <Animation id="FadeAnimation" repeat="false" easeFunction="linear">
+      <FloatFieldInterpolator id="FadeInterpolator" keyValue="[1, 0]" key="[0, 1]" fieldToInterp="LoadingImage.opacity"/>
+    </Animation>
+  </children>
+
+  <interface>
+    <!--URI of the loader image-->
+    <field id="uri" type="string" alias="loadingImage.uri" value="pkg:/images/Spin.gif"/>
+    <!--Field to keep control actions-->
+    <field id="control" type="string" onChange="onControl"/>
+    <!--Height of the progress bar-->
+    <field id="height" type="int" onChange="onSizeChange"/>
+    <!--Width of the progress bar-->
+    <field id="width" type="int" onChange="onSizeChange"/>
+  </interface>
+
+  <!--Handler for LoadingIndicator-->
+  <script type="text/brightscript" uri="pkg:/components/LoadingIndicator/LoadingIndicator.brs"/>
+  <!--Main.brs script to invoke its some of the functions-->
+  <script type="text/brightscript" uri="pkg:/source/main.brs" />
+</component>

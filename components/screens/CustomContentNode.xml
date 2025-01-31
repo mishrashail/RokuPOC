@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--********** Copyright 2016 Roku Corp.  All Rights Reserved. **********-->
+
+<!-- 
+    main node which handles home screen children 
+    -->
+<component name="CustomContentNode" extends="ContentNode">
+    <interface>
+        <field id="id" type="string"/>
+        <field id="title" type="string"/>
+        <field id="description" type="string"/>
+        <field id="posterURL" type="string"/>
+         <field id="screen" type="string"/>
+    </interface>
+</component>
+
+
