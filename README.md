@@ -1,5 +1,7 @@
 📺 Marvel Comics Roku App
 A simple Roku application demonstrating API usage, Scene Graph components, video playback, and app navigation.
+📹 **Demo Video:**  
+[![Watch the Video]](https://jmp.sh/s/eGnt8wiKwDdOSTlf9rLR)
 📝 Table of Contents
 Overview
 Features
@@ -57,5 +59,5 @@ Launch the app on your Roku device.
 Browse Comics: Scroll through the available comics.
 View Details: Select a comic to see the characters.
 Play Video: Choose a character to play the sample video.
+
  
-has context menu
