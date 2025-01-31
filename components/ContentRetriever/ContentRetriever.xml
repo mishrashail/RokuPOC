@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<component name="ContentRetriever" extends="Task">
+  <interface>
+    <field id="request" type="assocarray" />
+    <!-- visible should always be false, only here to remove warning from MainScene.brs -->
+    <field id="visible" type="bool" value="false"/>
+    <!-- Field for POST type network connection-->
+    <field id="requestPost" type="assocarray" />
+    <!-- Field for GET type network connection-->
+    <field id="requestGet" type="assocarray" />
+    <!--Field for image url-->
+    <field id="imageURL" type="string" alwaysNotify="true" />
+    <!--Observer field to track image loading status-->
+    <field id="imageLoaded" type="bool" alwaysNotify="true" />
+  </interface>
+
+  <!--ContentRetriever script -->
+  <script type="text/brightscript" uri="pkg:/components/ContentRetriever/contentretriever.brs" />
+  <!-- Include main.brs script to invoke its functions-->
+  <script type="text/brightscript" uri="pkg:/source/main.brs" />
+
+
+</component>
