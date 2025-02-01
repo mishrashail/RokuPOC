@@ -16,9 +16,7 @@ function listen() as void
     msg = wait(0, m.port)
     mt = type(msg)
     if mt = "roSGNodeEvent"
-      if msg.getField() = "requestPost"
-        makeAPIRequestPost(msg.getData())
-      else if msg.getField() = "requestGet"
+      if msg.getField() = "requestGet"
         makeAPIRequestGet(msg.getData())
       else
         print "[ERROR] ContentRetriever: unrecognized field '"; msg.getField(); "'"
@@ -88,78 +86,6 @@ function makeAPIRequestGet(request as object) as boolean
           urlTransfer.setUrl(uri)
           urlTransfer.setPort(m.port)
           if (urlTransfer.AsyncGetToString()) ' response will be caught by listen()
-            id = stri(urlTransfer.getIdentity()).trim()
-            m.jobQueue[id] = { context: context, transfer: urlTransfer } ' saving the urlTransfer object here is essential to keeping it alive (global scope) until the request is finished
-            print "Request to "; uri; " successful."
-          else
-            print "[ERROR] ContentRetriever: invalid uri: "; uri
-          end if
-        end if
-      end if
-    end if
-  end if
-  return true
-end function
-
-'Callback for listen() function written above
-'@param{string} request - API request params
-function makeAPIRequestPost(request as object) as boolean
-  if type(request) = "roAssociativeArray" ' sanity check: should pass in roAA
-    context = request.context
-    if type(context) = "roSGNode" ' sanity check: request should have one field (context as roSGNode)
-      parameters = context.parameters
-      if type(parameters) = "roAssociativeArray"
-        uri = parameters.uri
-        if type(uri) = "roString"
-          urlTransfer = CreateObject("roUrlTransfer")
-          urlTransfer.SetCertificatesFile("common:/certs/ca-bundle.crt")
-          urlTransfer.AddHeader("X-Roku-Reserved-Dev-Id", "")
-          urlTransfer.RetainBodyOnError(true)
-          queryParam = ""
-          if parameters.requestType = "authorizationCall"
-            urlTransfer.AddHeader("Content-Type", "application/json")
-            postData = parameters.postData
-            queryParam = formatJSON(postData)
-          else if parameters.requestType = "makeWatchlistentriescall"
-            urlTransfer.AddHeader("Content-Type", "application/json")
-            urlTransfer.AddHeader("Authorization", "Bearer " + m.global.acessToken)
-            postData = parameters.postData
-            queryParam = formatJSON(postData)
-          else if parameters.requestType = "attributionApiCall"
-            urlTransfer.AddHeader("Content-Type", "application/json")
-            urlTransfer.AddHeader("Authorization", "Bearer " + m.global.acessToken)
-            postData = parameters.postData
-            queryParam = formatJSON(postData)
-          else if parameters.requestType = "reservationApiCall" or parameters.requestType = "clearReservationApiCall" or parameters.requestType = "ordersApiCall" or parameters.requestType = "qrCodeRequest"  or parameters.requestType = "removewatchlistapicall"
-            urlTransfer.AddHeader("Content-Type", "application/json")
-            urlTransfer.AddHeader("Authorization", "Bearer " + m.global.acessToken)
-            postData = parameters.postData
-            queryParam = formatJSON(postData)
-          else if parameters.requestType = "authorizationValidateCall"
-            urlTransfer.AddHeader("Content-Type", "application/x-www-form-urlencoded")
-            postData = parameters.postData
-            queryParam = "grant_type=" + postData.grant_type + "&device_code=" + postData.device_code + "&client_id=" + postData.client_id + "&client_secret=" + postData.client_secret
-          else if parameters.requestType = "subscriptionApiCall"
-            urlTransfer.AddHeader("Content-Type", "application/json")
-            postData = parameters.postData
-            queryParam = formatJSON(postData)
-          end if
-          if parameters.requestType = "removewatchlistapicall"
-            urlTransfer.SetRequest("DELETE")
-          end if
-          if parameters.requestType = "clearReservationApiCall"
-            urlTransfer.SetRequest("DELETE")
-          else if parameters.requestType = "validateEventAccessCode"
-            urlTransfer.AddHeader("Content-Type", "application/json")
-            urlTransfer.SetRequest("PUT")
-            postData = parameters.postData
-            queryParam = formatJSON(postData)
-          end if
-          urlTransfer.InitClientCertificates()
-          urlTransfer.setUrl(uri)
-          urlTransfer.setPort(m.port)
-
-          if (urlTransfer.AsyncPostFromString(queryParam)) ' response will be caught by listen()
             id = stri(urlTransfer.getIdentity()).trim()
             m.jobQueue[id] = { context: context, transfer: urlTransfer } ' saving the urlTransfer object here is essential to keeping it alive (global scope) until the request is finished
             print "Request to "; uri; " successful."
