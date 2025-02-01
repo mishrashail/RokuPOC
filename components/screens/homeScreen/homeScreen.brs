@@ -16,10 +16,11 @@ sub setFocus()
 end sub
 
 sub setHomeScreenData()
+	loadConfigJson()
   	m.loadingIndicator.control = "start"
   	m.loadingIndicator.visible = true
 	'call api and get homescreen content
-	getURLCallGet(m.global.api.baseURL+"public/comics?ts="+m.global.ts+"&apikey="+m.global.publickey+"&hash="+m.global.hash+"&orderBy=-onsaleDate&limit=18", "HomeContentCall")
+	getURLCallGet(m.global.api.baseURL+"public/comics?ts="+m.ts+"&apikey="+m.publickey+"&hash="+m.hash+"&orderBy=-onsaleDate&limit=18", "HomeContentCall")
 end sub
 
 'fetch data from server and show in grid

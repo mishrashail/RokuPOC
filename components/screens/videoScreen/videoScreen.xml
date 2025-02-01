@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="videoScreen" extends="Group" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://devtools.web.roku.com/schema/RokuSceneGraph.xsd">
 
-	<script type="text/brightscript" uri="pkg:/components/screens/videoScreen/videoScreen.brs" />
+	<script type="text/brightscript" uri="pkg:/components/Screens/VideoScreen/VideoScreen.brs" />
 	<script type="text/brightscript" uri="pkg:/source/main.brs" />
 	<!-- Script element allows the definition of functions to initialize the component, and to respond to events (including key events) 
     and field value changes. The BrightScript interfaces for the Scene Graph nodes used by BrightScript are the same interfaces
@@ -14,8 +14,9 @@
 	<children>	
 	<!-- Children element contains all the Scene Graph node elements in a Scene Graph XML component. -->
 		
-       <Video id="videoPlayer" width="1920" height="1080" visible="false"/>
-	   <AppDailogbox id="AppDailogbox" />
+      	<Video id="videoPlayer" width="1920" height="1080" visible="false"/>
+	  	<AppDailogbox id="AppDailogbox" />
+		<ErrorDailogbox id="ErrorDailogbox" />
     </children>
     
 </component>

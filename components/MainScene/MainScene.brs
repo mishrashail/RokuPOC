@@ -23,7 +23,7 @@ sub showHomeScreen()
 	m.homeScreen.setFocus = true
 	m.homeScreen.setHomeData = true
 end sub
-
+'if user select any comic in homeScreen then user navigate to characterScreen
 sub selectedDataControllerTransport(event as object)
 	contentData = event.getData()
 	m.screensContainerArray[m.screens.getChildren(3000, 0).Count() - 1].visible = false
@@ -32,9 +32,10 @@ sub selectedDataControllerTransport(event as object)
 	m.characterScreen.contentData = contentData
 	m.screensContainerArray.Push(m.characterScreen)
 	m.screensContainerArray[m.screens.getChildren(3000, 0).Count() - 1].ObserveField("gotovideoScreen", "showvideoScreen")
+	m.screensContainerArray[m.screens.getChildren(3000, 0).Count() - 1].ObserveField("gotoLastScreen", "gotoLastScreen")
 	m.characterScreen.setFocus = true
 end sub
-
+'if user select any character in characterScreen then user navigate to videoscreen
 sub showvideoScreen()
 	m.screensContainerArray[m.screens.getChildren(3000, 0).Count() - 1].visible = false
 	m.videoScreen = m.screens.createChild("videoScreen")
@@ -46,7 +47,6 @@ end sub
 
 sub gotoLastScreen()
 	previousScreenId = m.screensContainerArray[m.screens.getChildren(3000, 0).Count() - 1].id
-	?"previousScreenId=============="previousScreenId
 	m.screens.removeChildIndex(m.screens.getChildren(3000, 0).Count() - 1)
 	m.screensContainerArray.Pop()
 	m.screensContainerArray[m.screens.getChildren(3000, 0).Count() - 1].visible = true
@@ -58,7 +58,6 @@ function onKeyEvent(key as string, press as boolean) as boolean
 	result = false
 	if press then
 		if key = "back"
-			?"m.screensContainerArray<>invalid and m.screensContainerArray.Count()===="m.screensContainerArray<>invalid and m.screensContainerArray.Count()
 			if m.screensContainerArray<>invalid and m.screensContainerArray.Count() > 1
 				if m.screensContainerArray[m.screens.getChildren(3000, 0).Count() - 1].id <> "videoScreen"
 					m.screens.removeChildIndex(m.screens.getChildren(3000, 0).Count() - 1)

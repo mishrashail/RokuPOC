@@ -8,6 +8,15 @@ sub init()
 	m.contentRow.itemSize = [260, 395]
 	m.contentRow.itemSpacing = [(50), (200)]
 	m.contentRow.ObserveField("itemSelected", "contentSelectionMade")' as Boolean 
+
+	m.ErrorDailogbox = CreateObject("roSGNode", "ErrorDailogbox")
+	m.ErrorDailogbox.id = "ErrorDailogbox"
+	m.top.appendChild(m.ErrorDailogbox)
+	m.ErrorDailogbox.observeField("closeErrorPopup","handelErrorPopup")
+end sub
+
+sub handelErrorPopup()
+	m.top.gotolastScreen = true
 end sub
 
 'handel focus on homescreen 
@@ -16,10 +25,11 @@ sub setFocus()
 end sub
 
 sub loadcharacterScreencontentData()
+	loadConfigJson()
   	m.loadingIndicator.control = "start"
   	m.loadingIndicator.visible = true
 	'call api and get homescreen content
-	getURLCallGet(m.global.api.baseURL+"public/comics/"+m.top.contentData.id+"/characters?ts="+m.global.ts+"&apikey="+m.global.publickey+"&hash="+m.global.hash, "charactersContentCall")
+	getURLCallGet(m.global.api.baseURL+"public/comics/"+m.top.contentData.id+"/characters?ts="+m.ts+"&apikey="+m.publickey+"&hash="+m.hash, "charactersContentCall")
 end sub
 
 'fetch data from server and show in grid
@@ -44,6 +54,11 @@ sub loadcharactersContentCallData(json)
 			m.contentRow.visible = true
 			m.contentRow.setFocus(true)
 		end if
+	else
+		m.loadingIndicator.control = "stop"
+  		m.loadingIndicator.visible = false
+		m.ErrorDailogbox.setMSG = "Characters are not available for this Marvel comic."
+		m.ErrorDailogbox.showDailogbox = true
 	end if
 end sub
 

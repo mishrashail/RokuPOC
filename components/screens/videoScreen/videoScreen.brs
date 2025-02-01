@@ -7,16 +7,25 @@ sub init()
 	m.top.appendChild(m.AppDailogbox)
 	m.AppDailogbox.observeField("setFocus","handelFocus")
 	m.AppDailogbox.observeField("close","handelVideoplayer")
+
+	m.ErrorDailogbox = CreateObject("roSGNode", "ErrorDailogbox")
+	m.ErrorDailogbox.id = "ErrorDailogbox"
+	m.top.appendChild(m.ErrorDailogbox)
+	m.ErrorDailogbox.observeField("closeErrorPopup","handelVideoplayer")
 end sub
+
 'if user click cancel button on exit popup
 sub handelFocus()
+	m.exitPopup = false
 	m.AppDailogbox.hideDailogbox = true
 	m.videoPlayer.control = "resume"
 	m.videoPlayer.setFocus(true)
 end sub
+
 'if user click ok button on exit popup
 sub handelVideoplayer()
 	m.AppDailogbox.hideDailogbox = true
+	m.ErrorDailogbox.hideDailogbox = true
 	m.videoPlayer.control = "stop"
 	m.videoPlayer.visible = false
 	m.top.gotoLastScreen = true
@@ -35,11 +44,16 @@ sub setFocus()
 end sub
 'handel videoplayer states like play,stop,resume,error and finish
 sub videoPlayerStates()
-	if (m.videoPlayer.state = "error" or m.videoPlayer.state = "finished") 
+	if m.videoPlayer.state = "error"
+		m.ErrorDailogbox.setMSG = "Something went wrong, unable to play video."
+		m.videoPlayer.control = "PAUSE"
+		m.ErrorDailogbox.showDailogbox = true
+	else if m.videoPlayer.state = "finished"
 		m.videoPlayer.control = "stop"
 		m.videoPlayer.visible = false
 		m.top.gotoLastScreen = true
 	else if m.videoPlayer.state = "playing"
+		m.exitPopup = false
 		m.videoPlayer.setFocus(true)
 	end if
 end sub
@@ -49,19 +63,20 @@ function onKeyEvent(key as string, press as boolean) as boolean
 	result = false
 	if press then
 		if key = "back"
-			if m.videoPlayer.visible
+			if m.videoPlayer.visible and m.exitPopup = false
+				m.exitPopup = true
 				m.videoPlayer.control = "PAUSE"
 				m.AppDailogbox.setMSG = "Are you sure you want to exit your video?"
 				m.AppDailogbox.showDailogbox = true
 			end if
 			result = true
 		else if key = "down"
-			if m.videoPlayer.visible 
+			if m.videoPlayer.visible  and m.exitPopup
 				m.AppDailogbox.handelNOButton = true
 			end if
 			result = true
 		else if key = "up"
-			if m.videoPlayer.visible 
+			if m.videoPlayer.visible  and m.exitPopup
 				m.AppDailogbox.handelOKButton = true
 			end if
 			result = true

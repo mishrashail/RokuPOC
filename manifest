@@ -21,4 +21,5 @@ splash_color=#000000
 splash_min_time=2000
 ui_resolutions=fhd
 supports_input_launch=1
+support_files=config.json
 
