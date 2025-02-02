@@ -9,7 +9,7 @@
   </interface>
 
   <!--ContentRetriever script -->
-  <script type="text/brightscript" uri="pkg:/components/ContentRetriever/ContentRetriever.brs" />
+  <script type="text/brightscript" uri="pkg:/components/contentretriever/contentretriever.brs" />
   <!-- Include main.brs script to invoke its functions-->
   <script type="text/brightscript" uri="pkg:/source/main.brs" />
 

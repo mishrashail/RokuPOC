@@ -8,7 +8,7 @@
   </interface>
 
   <!-- Main Script Hanlder -->
-  <script type="text/brightscript" uri="pkg:/Components/GlobalInitializer/GlobalInitializer.brs" />
+  <script type="text/brightscript" uri="pkg:/components/globalInitializer/globalInitializer.brs" />
   <script type="text/brightscript" uri="pkg:/source/utils.brs" />
   <script type="text/brightscript" uri="pkg:/source/main.brs" />
 </component>
