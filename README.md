@@ -84,13 +84,6 @@ This app interacts with the **Marvel Comics API** to fetch data:
  
 ## 🎥 **Video Playback**
 This app uses Roku's native video player to play a sample video when a character is selected.
- 
-
-https://github.com/user-attachments/assets/a02d63ee-bc50-4ef4-becd-a942dc5241a2
-
-
-
-https://github.com/user-attachments/assets/ae09c75e-032d-4018-89c2-eacf9fa34927
 
 
 ## 📂 **Project Structure**
