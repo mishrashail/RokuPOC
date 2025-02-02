@@ -25,7 +25,7 @@
   </interface>
 
   <!--Handler for LoadingIndicator-->
-  <script type="text/brightscript" uri="pkg:/components/LoadingIndicator/LoadingIndicator.brs"/>
+  <script type="text/brightscript" uri="pkg:/components/loadingindicator/loadingindicator.brs"/>
   <!--Main.brs script to invoke its some of the functions-->
   <script type="text/brightscript" uri="pkg:/source/main.brs" />
 </component>

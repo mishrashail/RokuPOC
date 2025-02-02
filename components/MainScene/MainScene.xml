@@ -2,7 +2,7 @@
 <component name="MainScene" extends="Scene"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://devtools.web.roku.com/schema/RokuSceneGraph.xsd">
 	<!--Main Handler for the screen-->
-	<script type="text/brightscript" uri="pkg:/components/MainScene/MainScene.brs" />
+	<script type="text/brightscript" uri="pkg:/Components/mainscene/mainscene.brs" />
 	<!-- Script having some of the utility functions-->
 	<script type="text/brightscript" uri="pkg:/source/main.brs" />
 

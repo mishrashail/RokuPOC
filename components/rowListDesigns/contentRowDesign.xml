@@ -20,7 +20,7 @@
   <script type="text/brightscript" uri="pkg:/source/utils.brs" />
 
   <!--Main Handler-->
-  <script type="text/brightscript" uri="pkg:/components/RowListDesigns/ContentRowDesign.brs" />
+  <script type="text/brightscript" uri="pkg:/components/rowlistdesigns/contentrowdesign.brs" />
 
   <children >
     <!--posterNode for grid-->
