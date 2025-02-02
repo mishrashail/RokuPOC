@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 
-<component name="GlobalInitializer" extends="Group">
+<component name="globalInitializer" extends="Group">
   <interface>
     <!-- visible should always be false, only here to remove warning from MainScene.brs -->
     <field id="visible" type="bool" value="false"/>

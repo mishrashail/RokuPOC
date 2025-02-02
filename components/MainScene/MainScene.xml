@@ -12,7 +12,7 @@
 
 	<children>
 		<!--Node for Global data-->
-		<GlobalInitializer id="GlobalInitializer"/>
+		<globalInitializer id="GlobalInitializer"/>
 	
 		<Group id="screens" translation="[0,0]"/>
 		
