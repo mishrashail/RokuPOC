@@ -2,7 +2,6 @@
 A simple Roku application demonstrating API usage, Scene Graph components, video playback, and app navigation.
  
 📹 **Demo Video:**  
-[![Watch the Video](https://img.youtube.com/vi/YOUR_VIDEO_ID/0.jpg)](https://jmp.sh/s/eGnt8wiKwDdOSTlf9rLR)
 
 https://github.com/user-attachments/assets/0e5e3920-6822-49ac-bf2d-139fdf2a0122
  
